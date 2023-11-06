@@ -16,7 +16,7 @@ export class MiningNodes {
     }
 
     addNode(node: MiningNode): void {
-        this.nodes.push(node);
+        this.nodes.push(new MiningNode(node));
     }
 
     removeNode(node: MiningNode): void {

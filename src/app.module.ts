@@ -15,24 +15,6 @@ import { TransactionsModule } from './transactions/transactions.module';
 })
 export class AppModule {
     constructor() {
-        // init BlockObservable (Singelton)
-        BlockObservable.getInstance();
-
-        // init MiningNodes (Singelton)
-        const mns = MiningNodes.getInstance();
-
-        // init mining nodes with genesis block
-        const genesisTransaction = {
-            id: "genesis",
-            from: "genesis",
-            to: "genesis",
-            amount: 100
-        };
-
-        mns.addNode(new MiningNode("1", "Node 1", genesisTransaction));
-        mns.addNode(new MiningNode("2", "Node 2", genesisTransaction));
-        mns.addNode(new MiningNode("3", "Node 3", genesisTransaction));
-
         console.log("AppModule constructor");
     }
 }
