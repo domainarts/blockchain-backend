@@ -43,7 +43,7 @@ export class MiningNode implements IMiningNode {
         this.id = id;
         this.name = name;
         this._transactionQueue = new Queue();
-        this.blockchain = new Blockchain();
+        this.blockchain = new Blockchain(this.id);
         this.miningObservable = MiningObservable.getInstance();
         this.miningObservable.addObserver(this);
         this.wallet = wallet;

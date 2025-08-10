@@ -20,7 +20,7 @@ export class Wallet {
         }
         this.owner = owner;
         this.id = this.generateId(owner);
-        this.transactions = this.getTransactions();
+        //this.transactions = this.getTransactions();
         
         return this;
     }

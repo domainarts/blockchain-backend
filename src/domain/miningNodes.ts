@@ -1,4 +1,4 @@
-import { MiningNode } from "./miningNode";
+import { MiningNode, MiningNodeDTO } from "./miningNode";
 import { TransactionDTO } from "../domain/block";
 
 export class MiningNodes {
@@ -15,8 +15,9 @@ export class MiningNodes {
         return this._instance;
     }
 
-    addNode(node: MiningNode): void {
-        this.nodes.push(new MiningNode(node));
+    addNode(node: MiningNodeDTO): void {
+        const { id, name, wallet } = node;
+        this.nodes.push(new MiningNode(id, name, wallet));
     }
 
     removeNode(node: MiningNode): void {
@@ -34,5 +35,13 @@ export class MiningNodes {
         this.nodes.forEach((node) => {
             node.addTransaction(transaction);
         });
+    }
+
+    getTransactionsByWalletId(walletId: string): TransactionDTO[] {
+        return this.nodes[0].blockchain.getTransactionsByWalletId(walletId);
+    }
+
+    toJSON(): MiningNodeDTO[] {
+        return this.nodes.map((node) => node.toJSON());
     }
 }

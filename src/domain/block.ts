@@ -5,7 +5,17 @@ export type TransactionDTO = {
     from: string;
     to: string;
     amount: number;
+    date: number;
 };
+
+export enum BlockStatus {
+    PENDING = "PENDING",
+    MINING = "MINING",
+    MINED = "MINED",
+    VALID = "VALID",
+    INVALID = "INVALID",
+    INSERTED = "INSERTED"
+}
 
 export interface IBlock {
     blockId: string | number;
@@ -17,8 +27,10 @@ export interface IBlock {
     hashPrefix: string;
     terminate: boolean;
     currentHash: string;
+    status: BlockStatus;
 }
-export interface BlockDTO {
+
+export type BlockDTO = {
     blockId: string | number;
     nodeId: string;
     time: number;
@@ -28,7 +40,8 @@ export interface BlockDTO {
     hashPrefix: string;
     terminate: boolean;
     currentHash: string;
-}
+    status: BlockStatus;
+};
 
 export class Block implements IBlock {
     blockId: string | number;
@@ -40,6 +53,7 @@ export class Block implements IBlock {
     hashPrefix: string = "0";
     terminate: boolean;
     currentHash = "";
+    status: BlockStatus = BlockStatus.PENDING;
 
     constructor(
         time: number,
@@ -48,12 +62,12 @@ export class Block implements IBlock {
         nodeId: string,
         blockId: string | number
     ) {
-        this.nodeId = nodeId;
         this.time = time;
-        this.transaction = transaction;
         this.lastHash = lastHash;
-        this.terminate = false;
+        this.transaction = transaction;
+        this.nodeId = nodeId;
         this.blockId = blockId;
+        this.terminate = false;
     }
 
     terminateMining() {

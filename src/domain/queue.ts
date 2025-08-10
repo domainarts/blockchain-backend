@@ -12,7 +12,7 @@ export class Queue {
 
     // Methode, um das Element am Anfang der Queue zu entfernen und zurückzugeben
     get(): any {
-        return this.items.pop();
+        return this.items[0];
     }
 
     // Methode, um das Element am Anfang der Queue zu betrachten, ohne es zu entfernen
@@ -27,6 +27,14 @@ export class Queue {
 
     // Methode, um die Anzahl der Elemente in der Queue zu erhalten
     size(): number {
+        return this.items.length;
+    }
+
+    removeLast(): void {
+        this.items.pop();
+    }
+
+    length(): number {
         return this.items.length;
     }
 }

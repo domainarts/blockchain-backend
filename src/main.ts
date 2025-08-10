@@ -1,7 +1,6 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { MiningObservable } from "./domain/miningObserver";
-import { MiningNode } from "./domain/miningNode";
 import { Wallets } from "./domain/wallets";
 import { MiningNodes } from "./domain/miningNodes";
 
@@ -21,17 +20,17 @@ async function bootstrap() {
     // init wallets
     const wallet1 = wallets.addWallet({
         firstName: "Sascha",
-        lastName: "Hauf",
+        lastName: "Test",
         email: "sascha@domainarts.de"
     });
     const wallet2 = wallets.addWallet({
         firstName: "Jesko",
-        lastName: "Hauf",
+        lastName: "Test",
         email: "jesko@domainarts.de"
     });
     const wallet3 = wallets.addWallet({
         firstName: "Peter",
-        lastName: "Hauf",
+        lastName: "Test",
         email: "peter@domainarts.de"
     });
 
